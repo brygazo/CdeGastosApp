@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ApplicationName">CdeGastos</string>
+
+  <string name="lblTituloInicioSesion">¡Bienvenido a CdeGastos!</string>
+  <string name="lblTituloRegistrarse">¿No tienes una cuenta? ¡Registrate Aqui!</string>
+
+  <string name="lblUsuario">Nombre de Usuario</string>
+  <string name="lblContrasenia">Contraseña</string>
+  <string name="btnIniciarSesion">Iniciar Sesión</string>
+
+  <string name="lblTituloRegistrarUsuario">Ingresa tus datos</string>
+  <string name="lblNombres">Nombres</string>
+  <string name="lblApellidos">Apellidos</string>
+  <string name="lblEmail">Correo electronico</string>
+  <string name="lblNombreUsuario">Nombre de Usuario</string>
+  <string name="lblConfirmarContrasenia">Confirmar contraseña</string>
+  <string name="btnRegistrarUsuario">Registrarse</string>
+
+
+</resources>

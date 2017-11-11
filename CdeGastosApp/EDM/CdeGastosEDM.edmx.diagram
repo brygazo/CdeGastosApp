@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="81073a30fa2e454fb1f94d8de769aed9" Name="Diagram1" DisplayType="true" ZoomLevel="54" >
+        <EntityTypeShape EntityType="CdeGastosEDM.TipoPresupuesto" Width="1.875" PointX="8.875" PointY="0.5" />
+        <EntityTypeShape EntityType="CdeGastosEDM.Presupuesto" Width="2.5" PointX="8.625" PointY="3.375" />
+        <EntityTypeShape EntityType="CdeGastosEDM.Moneda" Width="1.75" PointX="2.625" PointY="0.5" FillColor="Lime" />
+        <EntityTypeShape EntityType="CdeGastosEDM.TipoCambio" Width="1.75" PointX="0.5" PointY="0.5" FillColor="Lime" />
+        <EntityTypeShape EntityType="CdeGastosEDM.Gasto" Width="2.125" PointX="16.75" PointY="10.5" />
+        <EntityTypeShape EntityType="CdeGastosEDM.CategoriaGasto" Width="2.5" PointX="20.375" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="CdeGastosEDM.CategoriaGastoCategoriaGasto" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="CdeGastosEDM.CategoriaGastoGasto" />
+        <EntityTypeShape EntityType="CdeGastosEDM.Actividad" Width="2.375" PointX="12.625" PointY="3.5" />
+        <AssociationConnector Association="CdeGastosEDM.PresupuestoActividad" />
+        <EntityTypeShape EntityType="CdeGastosEDM.Insumo" Width="1.875" PointX="20.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdeGastosEDM.ActividadInsumo" Width="2.5" PointX="16.5" PointY="3.125" FillColor="255, 255, 128" />
+        <AssociationConnector Association="CdeGastosEDM.ActividadActividadInsumo" />
+        <AssociationConnector Association="CdeGastosEDM.InsumoActividadInsumo" />
+        <EntityTypeShape EntityType="CdeGastosEDM.TipoInsumo" Width="1.75" PointX="20.5" PointY="0.5" />
+        <AssociationConnector Association="CdeGastosEDM.TipoInsumoInsumo" />
+        <EntityTypeShape EntityType="CdeGastosEDM.DetalleGasto" Width="2.5" PointX="16.5" PointY="7.125" />
+        <AssociationConnector Association="CdeGastosEDM.GastoDetalleGasto" />
+        <AssociationConnector Association="CdeGastosEDM.ActividadInsumoDetalleGasto" />
+        <EntityTypeShape EntityType="CdeGastosEDM.Ingreso" Width="2.25" PointX="4" PointY="10.375" />
+        <EntityTypeShape EntityType="CdeGastosEDM.Cuenta" Width="2.125" PointX="8.25" PointY="10.875" />
+        <AssociationConnector Association="CdeGastosEDM.CuentaIngreso" />
+        <EntityTypeShape EntityType="CdeGastosEDM.DetalleCuentaGasto" Width="2" PointX="12.5" PointY="10.875" />
+        <AssociationConnector Association="CdeGastosEDM.CuentaDetalleCuentaGasto" />
+        <AssociationConnector Association="CdeGastosEDM.GastoDetalleCuentaGasto" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

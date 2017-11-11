@@ -1,0 +1,1314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Actividades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ActividadesInsumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActividadId" Type="int" Nullable="false" />
+          <Property Name="InsumoId" Type="int" Nullable="false" />
+          <Property Name="CantidadPresupuestada" Type="float" Nullable="false" />
+          <Property Name="CostoPresupuestado" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CantidadEjecutada" Type="float" Nullable="false" />
+          <Property Name="CostoEjecutado" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriasGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="CategoriaGastoPadreId" Type="int" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetallesCuentasGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CuentaId" Type="int" Nullable="false" />
+          <Property Name="GastoId" Type="int" Nullable="false" />
+          <Property Name="MontoGasto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetallesGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GastoId" Type="int" Nullable="false" />
+          <Property Name="ActividadInsumoId" Type="int" Nullable="false" />
+          <Property Name="CantidadGasto" Type="float" Nullable="false" />
+          <Property Name="CostoGasto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="FechaGasto" Type="datetime" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="MyProperty" Type="int" Nullable="false" />
+          <Property Name="Moneda" Type="nvarchar(max)" />
+          <Property Name="TipoCambio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalGasto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="CategoriaGastoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ingresos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Moneda" Type="nvarchar(max)" />
+          <Property Name="TipoCambio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoIngreso" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="CuentaId" Type="int" Nullable="false" />
+          <Property Name="UsuarioId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Insumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="TipoInsumoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginsUsuarios">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UsuarioId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Monedas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Presupuestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="FechaHoraCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Moneda" Type="nvarchar(max)" />
+          <Property Name="TipoCambio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalPresupuesto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="UsuarioId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ReclamosUsuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposCambios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="nvarchar(max)" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposInsumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TiposPresupuestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar(max)" />
+          <Property Name="Apellidos" Type="nvarchar(max)" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="256" />
+          <Property Name="CorreoElectronicoConfirmado" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="NumeroTelefonico" Type="nvarchar(max)" />
+          <Property Name="NumeroTelefonicoConfirmado" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuariosRoles">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="UsuarioId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RolId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId">
+          <End Role="Presupuestos" Type="Self.Presupuestos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Actividades" Type="Self.Actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presupuestos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actividades">
+              <PropertyRef Name="PresupuestoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId">
+          <End Role="Actividades" Type="Self.Actividades" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ActividadesInsumos" Type="Self.ActividadesInsumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActividadesInsumos">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId">
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ActividadesInsumos" Type="Self.ActividadesInsumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActividadesInsumos">
+              <PropertyRef Name="InsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId">
+          <End Role="CategoriasGastos" Type="Self.CategoriasGastos" Multiplicity="0..1" />
+          <End Role="CategoriasGastos1" Type="Self.CategoriasGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriasGastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoriasGastos1">
+              <PropertyRef Name="CategoriaGastoPadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesCuentasGastos" Type="Self.DetallesCuentasGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesCuentasGastos">
+              <PropertyRef Name="CuentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId">
+          <End Role="Gastos" Type="Self.Gastos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesCuentasGastos" Type="Self.DetallesCuentasGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesCuentasGastos">
+              <PropertyRef Name="GastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId">
+          <End Role="ActividadesInsumos" Type="Self.ActividadesInsumos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesGastos" Type="Self.DetallesGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesInsumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesGastos">
+              <PropertyRef Name="ActividadInsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesGastos_dbo_Gastos_GastoId">
+          <End Role="Gastos" Type="Self.Gastos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesGastos" Type="Self.DetallesGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesGastos">
+              <PropertyRef Name="GastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId">
+          <End Role="CategoriasGastos" Type="Self.CategoriasGastos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Gastos" Type="Self.Gastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriasGastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gastos">
+              <PropertyRef Name="CategoriaGastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ingresos_dbo_Cuentas_CuentaId">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingresos">
+              <PropertyRef Name="CuentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ingresos_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingresos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId">
+          <End Role="TiposInsumos" Type="Self.TiposInsumos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposInsumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insumos">
+              <PropertyRef Name="TipoInsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoginsUsuarios" Type="Self.LoginsUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoginsUsuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Presupuestos" Type="Self.Presupuestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Presupuestos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReclamosUsuarios" Type="Self.ReclamosUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReclamosUsuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UsuariosRoles_dbo_Roles_RolId">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuariosRoles">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UsuariosRoles_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuariosRoles">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Actividades" EntityType="Self.Actividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActividadesInsumos" EntityType="Self.ActividadesInsumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoriasGastos" EntityType="Self.CategoriasGastos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetallesCuentasGastos" EntityType="Self.DetallesCuentasGastos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetallesGastos" EntityType="Self.DetallesGastos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gastos" EntityType="Self.Gastos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingresos" EntityType="Self.Ingresos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insumos" EntityType="Self.Insumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginsUsuarios" EntityType="Self.LoginsUsuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Monedas" EntityType="Self.Monedas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presupuestos" EntityType="Self.Presupuestos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReclamosUsuarios" EntityType="Self.ReclamosUsuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposCambios" EntityType="Self.TiposCambios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposInsumos" EntityType="Self.TiposInsumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposPresupuestos" EntityType="Self.TiposPresupuestos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuariosRoles" EntityType="Self.UsuariosRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId" Association="Self.FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId">
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+            <End Role="Actividades" EntitySet="Actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId" Association="Self.FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId">
+            <End Role="Actividades" EntitySet="Actividades" />
+            <End Role="ActividadesInsumos" EntitySet="ActividadesInsumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId" Association="Self.FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId">
+            <End Role="Insumos" EntitySet="Insumos" />
+            <End Role="ActividadesInsumos" EntitySet="ActividadesInsumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId" Association="Self.FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId">
+            <End Role="CategoriasGastos" EntitySet="CategoriasGastos" />
+            <End Role="CategoriasGastos1" EntitySet="CategoriasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId" Association="Self.FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="DetallesCuentasGastos" EntitySet="DetallesCuentasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId" Association="Self.FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId">
+            <End Role="Gastos" EntitySet="Gastos" />
+            <End Role="DetallesCuentasGastos" EntitySet="DetallesCuentasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId" Association="Self.FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId">
+            <End Role="ActividadesInsumos" EntitySet="ActividadesInsumos" />
+            <End Role="DetallesGastos" EntitySet="DetallesGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesGastos_dbo_Gastos_GastoId" Association="Self.FK_dbo_DetallesGastos_dbo_Gastos_GastoId">
+            <End Role="Gastos" EntitySet="Gastos" />
+            <End Role="DetallesGastos" EntitySet="DetallesGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId" Association="Self.FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId">
+            <End Role="CategoriasGastos" EntitySet="CategoriasGastos" />
+            <End Role="Gastos" EntitySet="Gastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ingresos_dbo_Cuentas_CuentaId" Association="Self.FK_dbo_Ingresos_dbo_Cuentas_CuentaId">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="Ingresos" EntitySet="Ingresos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ingresos_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_Ingresos_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ingresos" EntitySet="Ingresos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId" Association="Self.FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId">
+            <End Role="TiposInsumos" EntitySet="TiposInsumos" />
+            <End Role="Insumos" EntitySet="Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="LoginsUsuarios" EntitySet="LoginsUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="ReclamosUsuarios" EntitySet="ReclamosUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UsuariosRoles_dbo_Roles_RolId" Association="Self.FK_dbo_UsuariosRoles_dbo_Roles_RolId">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UsuariosRoles_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_UsuariosRoles_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Actividades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Presupuestos" Relationship="Self.FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId" FromRole="Actividades" ToRole="Presupuestos" />
+          <NavigationProperty Name="ActividadesInsumos" Relationship="Self.FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId" FromRole="Actividades" ToRole="ActividadesInsumos" />
+        </EntityType>
+        <EntityType Name="ActividadesInsumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActividadId" Type="Int32" Nullable="false" />
+          <Property Name="InsumoId" Type="Int32" Nullable="false" />
+          <Property Name="CantidadPresupuestada" Type="Double" Nullable="false" />
+          <Property Name="CostoPresupuestado" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CantidadEjecutada" Type="Double" Nullable="false" />
+          <Property Name="CostoEjecutado" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Actividades" Relationship="Self.FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId" FromRole="ActividadesInsumos" ToRole="Actividades" />
+          <NavigationProperty Name="Insumos" Relationship="Self.FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId" FromRole="ActividadesInsumos" ToRole="Insumos" />
+          <NavigationProperty Name="DetallesGastos" Relationship="Self.FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId" FromRole="ActividadesInsumos" ToRole="DetallesGastos" />
+        </EntityType>
+        <EntityType Name="CategoriasGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoriaGastoPadreId" Type="Int32" />
+          <NavigationProperty Name="CategoriasGastos1" Relationship="Self.FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId" FromRole="CategoriasGastos" ToRole="CategoriasGastos1" />
+          <NavigationProperty Name="CategoriasGastos2" Relationship="Self.FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId" FromRole="CategoriasGastos1" ToRole="CategoriasGastos" />
+          <NavigationProperty Name="Gastos" Relationship="Self.FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId" FromRole="CategoriasGastos" ToRole="Gastos" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DetallesCuentasGastos" Relationship="Self.FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId" FromRole="Cuentas" ToRole="DetallesCuentasGastos" />
+          <NavigationProperty Name="Ingresos" Relationship="Self.FK_dbo_Ingresos_dbo_Cuentas_CuentaId" FromRole="Cuentas" ToRole="Ingresos" />
+        </EntityType>
+        <EntityType Name="DetallesCuentasGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CuentaId" Type="Int32" Nullable="false" />
+          <Property Name="GastoId" Type="Int32" Nullable="false" />
+          <Property Name="MontoGasto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId" FromRole="DetallesCuentasGastos" ToRole="Cuentas" />
+          <NavigationProperty Name="Gastos" Relationship="Self.FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId" FromRole="DetallesCuentasGastos" ToRole="Gastos" />
+        </EntityType>
+        <EntityType Name="DetallesGastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GastoId" Type="Int32" Nullable="false" />
+          <Property Name="ActividadInsumoId" Type="Int32" Nullable="false" />
+          <Property Name="CantidadGasto" Type="Double" Nullable="false" />
+          <Property Name="CostoGasto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="ActividadesInsumos" Relationship="Self.FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId" FromRole="DetallesGastos" ToRole="ActividadesInsumos" />
+          <NavigationProperty Name="Gastos" Relationship="Self.FK_dbo_DetallesGastos_dbo_Gastos_GastoId" FromRole="DetallesGastos" ToRole="Gastos" />
+        </EntityType>
+        <EntityType Name="Gastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaGasto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MyProperty" Type="Int32" Nullable="false" />
+          <Property Name="Moneda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TipoCambio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalGasto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CategoriaGastoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategoriasGastos" Relationship="Self.FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId" FromRole="Gastos" ToRole="CategoriasGastos" />
+          <NavigationProperty Name="DetallesCuentasGastos" Relationship="Self.FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId" FromRole="Gastos" ToRole="DetallesCuentasGastos" />
+          <NavigationProperty Name="DetallesGastos" Relationship="Self.FK_dbo_DetallesGastos_dbo_Gastos_GastoId" FromRole="Gastos" ToRole="DetallesGastos" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ingresos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Moneda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TipoCambio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoIngreso" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CuentaId" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_dbo_Ingresos_dbo_Cuentas_CuentaId" FromRole="Ingresos" ToRole="Cuentas" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_dbo_Ingresos_dbo_Usuarios_UsuarioId" FromRole="Ingresos" ToRole="Usuarios" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TipoInsumoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActividadesInsumos" Relationship="Self.FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId" FromRole="Insumos" ToRole="ActividadesInsumos" />
+          <NavigationProperty Name="TiposInsumos" Relationship="Self.FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId" FromRole="Insumos" ToRole="TiposInsumos" />
+        </EntityType>
+        <EntityType Name="LoginsUsuarios">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UsuarioId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId" FromRole="LoginsUsuarios" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Monedas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Presupuestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Moneda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TipoCambio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalPresupuesto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UsuarioId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Actividades" Relationship="Self.FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId" FromRole="Presupuestos" ToRole="Actividades" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId" FromRole="Presupuestos" ToRole="Usuarios" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReclamosUsuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId" FromRole="ReclamosUsuarios" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.UsuariosRoles" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="TiposCambios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposInsumos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Insumos" Relationship="Self.FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId" FromRole="TiposInsumos" ToRole="Insumos" />
+        </EntityType>
+        <EntityType Name="TiposPresupuestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoElectronicoConfirmado" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroTelefonico" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroTelefonicoConfirmado" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ingresos" Relationship="Self.FK_dbo_Ingresos_dbo_Usuarios_UsuarioId" FromRole="Usuarios" ToRole="Ingresos" />
+          <NavigationProperty Name="LoginsUsuarios" Relationship="Self.FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId" FromRole="Usuarios" ToRole="LoginsUsuarios" />
+          <NavigationProperty Name="Presupuestos" Relationship="Self.FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId" FromRole="Usuarios" ToRole="Presupuestos" />
+          <NavigationProperty Name="ReclamosUsuarios" Relationship="Self.FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId" FromRole="Usuarios" ToRole="ReclamosUsuarios" />
+          <NavigationProperty Name="Roles" Relationship="Self.UsuariosRoles" FromRole="Usuarios" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId">
+          <End Role="Presupuestos" Type="Self.Presupuestos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Actividades" Type="Self.Actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presupuestos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actividades">
+              <PropertyRef Name="PresupuestoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId">
+          <End Role="Actividades" Type="Self.Actividades" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ActividadesInsumos" Type="Self.ActividadesInsumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActividadesInsumos">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId">
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ActividadesInsumos" Type="Self.ActividadesInsumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActividadesInsumos">
+              <PropertyRef Name="InsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId">
+          <End Role="ActividadesInsumos" Type="Self.ActividadesInsumos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesGastos" Type="Self.DetallesGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadesInsumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesGastos">
+              <PropertyRef Name="ActividadInsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId">
+          <End Role="CategoriasGastos" Type="Self.CategoriasGastos" Multiplicity="0..1" />
+          <End Role="CategoriasGastos1" Type="Self.CategoriasGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriasGastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoriasGastos1">
+              <PropertyRef Name="CategoriaGastoPadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId">
+          <End Role="CategoriasGastos" Type="Self.CategoriasGastos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Gastos" Type="Self.Gastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriasGastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gastos">
+              <PropertyRef Name="CategoriaGastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesCuentasGastos" Type="Self.DetallesCuentasGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesCuentasGastos">
+              <PropertyRef Name="CuentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ingresos_dbo_Cuentas_CuentaId">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingresos">
+              <PropertyRef Name="CuentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId">
+          <End Role="Gastos" Type="Self.Gastos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesCuentasGastos" Type="Self.DetallesCuentasGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesCuentasGastos">
+              <PropertyRef Name="GastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_DetallesGastos_dbo_Gastos_GastoId">
+          <End Role="Gastos" Type="Self.Gastos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallesGastos" Type="Self.DetallesGastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gastos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallesGastos">
+              <PropertyRef Name="GastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Ingresos_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Ingresos" Type="Self.Ingresos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingresos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId">
+          <End Role="TiposInsumos" Type="Self.TiposInsumos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Insumos" Type="Self.Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposInsumos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insumos">
+              <PropertyRef Name="TipoInsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoginsUsuarios" Type="Self.LoginsUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoginsUsuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Presupuestos" Type="Self.Presupuestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Presupuestos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReclamosUsuarios" Type="Self.ReclamosUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReclamosUsuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuariosRoles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Actividades" EntityType="Self.Actividades" />
+          <EntitySet Name="ActividadesInsumos" EntityType="Self.ActividadesInsumos" />
+          <EntitySet Name="CategoriasGastos" EntityType="Self.CategoriasGastos" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
+          <EntitySet Name="DetallesCuentasGastos" EntityType="Self.DetallesCuentasGastos" />
+          <EntitySet Name="DetallesGastos" EntityType="Self.DetallesGastos" />
+          <EntitySet Name="Gastos" EntityType="Self.Gastos" />
+          <EntitySet Name="Ingresos" EntityType="Self.Ingresos" />
+          <EntitySet Name="Insumos" EntityType="Self.Insumos" />
+          <EntitySet Name="LoginsUsuarios" EntityType="Self.LoginsUsuarios" />
+          <EntitySet Name="Monedas" EntityType="Self.Monedas" />
+          <EntitySet Name="Presupuestos" EntityType="Self.Presupuestos" />
+          <EntitySet Name="ReclamosUsuarios" EntityType="Self.ReclamosUsuarios" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="TiposCambios" EntityType="Self.TiposCambios" />
+          <EntitySet Name="TiposInsumos" EntityType="Self.TiposInsumos" />
+          <EntitySet Name="TiposPresupuestos" EntityType="Self.TiposPresupuestos" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId" Association="Self.FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId">
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+            <End Role="Actividades" EntitySet="Actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId" Association="Self.FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId">
+            <End Role="Actividades" EntitySet="Actividades" />
+            <End Role="ActividadesInsumos" EntitySet="ActividadesInsumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId" Association="Self.FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId">
+            <End Role="Insumos" EntitySet="Insumos" />
+            <End Role="ActividadesInsumos" EntitySet="ActividadesInsumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId" Association="Self.FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId">
+            <End Role="ActividadesInsumos" EntitySet="ActividadesInsumos" />
+            <End Role="DetallesGastos" EntitySet="DetallesGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId" Association="Self.FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId">
+            <End Role="CategoriasGastos" EntitySet="CategoriasGastos" />
+            <End Role="CategoriasGastos1" EntitySet="CategoriasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId" Association="Self.FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId">
+            <End Role="CategoriasGastos" EntitySet="CategoriasGastos" />
+            <End Role="Gastos" EntitySet="Gastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId" Association="Self.FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="DetallesCuentasGastos" EntitySet="DetallesCuentasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ingresos_dbo_Cuentas_CuentaId" Association="Self.FK_dbo_Ingresos_dbo_Cuentas_CuentaId">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="Ingresos" EntitySet="Ingresos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId" Association="Self.FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId">
+            <End Role="Gastos" EntitySet="Gastos" />
+            <End Role="DetallesCuentasGastos" EntitySet="DetallesCuentasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_DetallesGastos_dbo_Gastos_GastoId" Association="Self.FK_dbo_DetallesGastos_dbo_Gastos_GastoId">
+            <End Role="Gastos" EntitySet="Gastos" />
+            <End Role="DetallesGastos" EntitySet="DetallesGastos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Ingresos_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_Ingresos_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ingresos" EntitySet="Ingresos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId" Association="Self.FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId">
+            <End Role="TiposInsumos" EntitySet="TiposInsumos" />
+            <End Role="Insumos" EntitySet="Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="LoginsUsuarios" EntitySet="LoginsUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId" Association="Self.FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="ReclamosUsuarios" EntitySet="ReclamosUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="UsuariosRoles" Association="Self.UsuariosRoles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Actividades">
+            <EntityTypeMapping TypeName="Model.Actividades">
+              <MappingFragment StoreEntitySet="Actividades">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadesInsumos">
+            <EntityTypeMapping TypeName="Model.ActividadesInsumos">
+              <MappingFragment StoreEntitySet="ActividadesInsumos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+                <ScalarProperty Name="InsumoId" ColumnName="InsumoId" />
+                <ScalarProperty Name="CantidadPresupuestada" ColumnName="CantidadPresupuestada" />
+                <ScalarProperty Name="CostoPresupuestado" ColumnName="CostoPresupuestado" />
+                <ScalarProperty Name="CantidadEjecutada" ColumnName="CantidadEjecutada" />
+                <ScalarProperty Name="CostoEjecutado" ColumnName="CostoEjecutado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriasGastos">
+            <EntityTypeMapping TypeName="Model.CategoriasGastos">
+              <MappingFragment StoreEntitySet="CategoriasGastos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CategoriaGastoPadreId" ColumnName="CategoriaGastoPadreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuentas">
+            <EntityTypeMapping TypeName="Model.Cuentas">
+              <MappingFragment StoreEntitySet="Cuentas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallesCuentasGastos">
+            <EntityTypeMapping TypeName="Model.DetallesCuentasGastos">
+              <MappingFragment StoreEntitySet="DetallesCuentasGastos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CuentaId" ColumnName="CuentaId" />
+                <ScalarProperty Name="GastoId" ColumnName="GastoId" />
+                <ScalarProperty Name="MontoGasto" ColumnName="MontoGasto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallesGastos">
+            <EntityTypeMapping TypeName="Model.DetallesGastos">
+              <MappingFragment StoreEntitySet="DetallesGastos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GastoId" ColumnName="GastoId" />
+                <ScalarProperty Name="ActividadInsumoId" ColumnName="ActividadInsumoId" />
+                <ScalarProperty Name="CantidadGasto" ColumnName="CantidadGasto" />
+                <ScalarProperty Name="CostoGasto" ColumnName="CostoGasto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gastos">
+            <EntityTypeMapping TypeName="Model.Gastos">
+              <MappingFragment StoreEntitySet="Gastos">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaGasto" ColumnName="FechaGasto" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="MyProperty" ColumnName="MyProperty" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
+                <ScalarProperty Name="TotalGasto" ColumnName="TotalGasto" />
+                <ScalarProperty Name="CategoriaGastoId" ColumnName="CategoriaGastoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingresos">
+            <EntityTypeMapping TypeName="Model.Ingresos">
+              <MappingFragment StoreEntitySet="Ingresos">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
+                <ScalarProperty Name="MontoIngreso" ColumnName="MontoIngreso" />
+                <ScalarProperty Name="CuentaId" ColumnName="CuentaId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insumos">
+            <EntityTypeMapping TypeName="Model.Insumos">
+              <MappingFragment StoreEntitySet="Insumos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoInsumoId" ColumnName="TipoInsumoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginsUsuarios">
+            <EntityTypeMapping TypeName="Model.LoginsUsuarios">
+              <MappingFragment StoreEntitySet="LoginsUsuarios">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Monedas">
+            <EntityTypeMapping TypeName="Model.Monedas">
+              <MappingFragment StoreEntitySet="Monedas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presupuestos">
+            <EntityTypeMapping TypeName="Model.Presupuestos">
+              <MappingFragment StoreEntitySet="Presupuestos">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
+                <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReclamosUsuarios">
+            <EntityTypeMapping TypeName="Model.ReclamosUsuarios">
+              <MappingFragment StoreEntitySet="ReclamosUsuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Model.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposCambios">
+            <EntityTypeMapping TypeName="Model.TiposCambios">
+              <MappingFragment StoreEntitySet="TiposCambios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposInsumos">
+            <EntityTypeMapping TypeName="Model.TiposInsumos">
+              <MappingFragment StoreEntitySet="TiposInsumos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposPresupuestos">
+            <EntityTypeMapping TypeName="Model.TiposPresupuestos">
+              <MappingFragment StoreEntitySet="TiposPresupuestos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="Model.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="CorreoElectronicoConfirmado" ColumnName="CorreoElectronicoConfirmado" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="NumeroTelefonico" ColumnName="NumeroTelefonico" />
+                <ScalarProperty Name="NumeroTelefonicoConfirmado" ColumnName="NumeroTelefonicoConfirmado" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsuariosRoles" TypeName="Model.UsuariosRoles" StoreEntitySet="UsuariosRoles">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="Id" ColumnName="RolId" />
+            </EndProperty>
+            <EndProperty Name="Usuarios">
+              <ScalarProperty Name="Id" ColumnName="UsuarioId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

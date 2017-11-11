@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f839a1870edf4b0fba67853810a6348a" Name="Diagram1" ZoomLevel="78">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="11" PointY="0.5" IsExpanded="true" FillColor="255, 192, 192" />
+        <EntityTypeShape EntityType="Model.Actividades" Width="1.5" PointX="5.875" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ActividadesInsumos" Width="2" PointX="8.125" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CategoriasGastos" Width="2.25" PointX="16.625" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Cuentas" Width="1.5" PointX="10.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DetallesCuentasGastos" Width="2.125" PointX="13" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DetallesGastos" Width="1.5" PointX="11.125" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Gastos" Width="1.5" PointX="14" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ingresos" Width="1.5" PointX="7.375" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Insumos" Width="1.5" PointX="8.375" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LoginsUsuarios" Width="1.5" PointX="0.625" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Monedas" Width="1.5" PointX="13" PointY="0.5" IsExpanded="true" FillColor="255, 192, 192" />
+        <EntityTypeShape EntityType="Model.Presupuestos" Width="1.5" PointX="3.5" PointY="9.375" IsExpanded="true" FillColor="0, 122, 204" />
+        <EntityTypeShape EntityType="Model.ReclamosUsuarios" Width="1.75" PointX="0.625" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="0.625" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TiposCambios" Width="1.5" PointX="9" PointY="0.5" IsExpanded="true" FillColor="255, 192, 192" />
+        <EntityTypeShape EntityType="Model.TiposInsumos" Width="1.5" PointX="11.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TiposPresupuestos" Width="1.5" PointX="15" PointY="0.5" IsExpanded="true" FillColor="255, 192, 192" />
+        <EntityTypeShape EntityType="Model.Usuarios" Width="2.125" PointX="3.625" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_Actividades_dbo_Presupuestos_PresupuestoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_ActividadesInsumos_dbo_Actividades_ActividadId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_ActividadesInsumos_dbo_Insumos_InsumoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_DetallesGastos_dbo_ActividadesInsumos_ActividadInsumoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_CategoriasGastos_dbo_CategoriasGastos_CategoriaGastoPadreId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Gastos_dbo_CategoriasGastos_CategoriaGastoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_DetallesCuentasGastos_dbo_Cuentas_CuentaId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Ingresos_dbo_Cuentas_CuentaId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_DetallesCuentasGastos_dbo_Gastos_GastoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_DetallesGastos_dbo_Gastos_GastoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Ingresos_dbo_Usuarios_UsuarioId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Insumos_dbo_TiposInsumos_TipoInsumoId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_LoginsUsuarios_dbo_Usuarios_UsuarioId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_Presupuestos_dbo_Usuarios_UsuarioId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_ReclamosUsuarios_dbo_Usuarios_UsuarioId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.UsuariosRoles" ManuallyRouted="false" >
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

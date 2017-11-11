@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CdeGastosEDM.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CdeGastosEDMStoreContainer">
+  </EntityContainer>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="CdeGastosEDM" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="CdeGastosEDMContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TiposPresupuestos" EntityType="CdeGastosEDM.TipoPresupuesto" />
+          <EntitySet Name="Presupuestos" EntityType="CdeGastosEDM.Presupuesto" />
+          <EntitySet Name="Monedas" EntityType="CdeGastosEDM.Moneda" />
+          <EntitySet Name="TiposCambio" EntityType="CdeGastosEDM.TipoCambio" />
+          <EntitySet Name="Gastos" EntityType="CdeGastosEDM.Gasto" />
+          <EntitySet Name="CategoriasGastos" EntityType="CdeGastosEDM.CategoriaGasto" />
+          <AssociationSet Name="CategoriaGastoCategoriaGasto" Association="CdeGastosEDM.CategoriaGastoCategoriaGasto">
+            <End Role="CategoriaGasto" EntitySet="CategoriasGastos" />
+            <End Role="CategoriaGasto1" EntitySet="CategoriasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="CategoriaGastoGasto" Association="CdeGastosEDM.CategoriaGastoGasto">
+            <End Role="CategoriaGasto" EntitySet="CategoriasGastos" />
+            <End Role="Gasto" EntitySet="Gastos" />
+          </AssociationSet>
+          <EntitySet Name="Actividades" EntityType="CdeGastosEDM.Actividad" />
+          <AssociationSet Name="PresupuestoActividad" Association="CdeGastosEDM.PresupuestoActividad">
+            <End Role="Presupuesto" EntitySet="Presupuestos" />
+            <End Role="Actividad" EntitySet="Actividades" />
+          </AssociationSet>
+          <EntitySet Name="Insumos" EntityType="CdeGastosEDM.Insumo" />
+          <EntitySet Name="ActividadesInsumos" EntityType="CdeGastosEDM.ActividadInsumo" />
+          <AssociationSet Name="ActividadActividadInsumo" Association="CdeGastosEDM.ActividadActividadInsumo">
+            <End Role="Actividad" EntitySet="Actividades" />
+            <End Role="ActividadInsumo" EntitySet="ActividadesInsumos" />
+          </AssociationSet>
+          <AssociationSet Name="InsumoActividadInsumo" Association="CdeGastosEDM.InsumoActividadInsumo">
+            <End Role="Insumo" EntitySet="Insumos" />
+            <End Role="ActividadInsumo" EntitySet="ActividadesInsumos" />
+          </AssociationSet>
+          <EntitySet Name="TiposInsumos" EntityType="CdeGastosEDM.TipoInsumo" />
+          <AssociationSet Name="TipoInsumoInsumo" Association="CdeGastosEDM.TipoInsumoInsumo">
+            <End Role="TipoInsumo" EntitySet="TiposInsumos" />
+            <End Role="Insumo" EntitySet="Insumos" />
+          </AssociationSet>
+          <EntitySet Name="DetallesGastos" EntityType="CdeGastosEDM.DetalleGasto" />
+          <AssociationSet Name="GastoDetalleGasto" Association="CdeGastosEDM.GastoDetalleGasto">
+            <End Role="Gasto" EntitySet="Gastos" />
+            <End Role="DetalleGasto" EntitySet="DetallesGastos" />
+          </AssociationSet>
+          <AssociationSet Name="ActividadInsumoDetalleGasto" Association="CdeGastosEDM.ActividadInsumoDetalleGasto">
+            <End Role="ActividadInsumo" EntitySet="ActividadesInsumos" />
+            <End Role="DetalleGasto" EntitySet="DetallesGastos" />
+          </AssociationSet>
+          <EntitySet Name="Ingresos" EntityType="CdeGastosEDM.Ingreso" />
+          <EntitySet Name="Cuentas" EntityType="CdeGastosEDM.Cuenta" />
+          <AssociationSet Name="CuentaIngreso" Association="CdeGastosEDM.CuentaIngreso">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="Ingreso" EntitySet="Ingresos" />
+          </AssociationSet>
+          <EntitySet Name="DetallessCuentasGastos" EntityType="CdeGastosEDM.DetalleCuentaGasto" />
+          <AssociationSet Name="CuentaDetalleCuentaGasto" Association="CdeGastosEDM.CuentaDetalleCuentaGasto">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="DetalleCuentaGasto" EntitySet="DetallessCuentasGastos" />
+          </AssociationSet>
+          <AssociationSet Name="GastoDetalleCuentaGasto" Association="CdeGastosEDM.GastoDetalleCuentaGasto">
+            <End Role="Gasto" EntitySet="Gastos" />
+            <End Role="DetalleCuentaGasto" EntitySet="DetallessCuentasGastos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TipoPresupuesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presupuesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Actividades" Relationship="CdeGastosEDM.PresupuestoActividad" FromRole="Presupuesto" ToRole="Actividad" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="TotalPresupuesto" Type="Decimal" Nullable="false" Scale="4" Precision="16" />
+          <Property Name="Moneda" Type="String" Nullable="false" />
+          <Property Name="TipoCambio" Type="Decimal" Nullable="false" Precision="16" Scale="4" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoCambio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="String" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" Scale="4" Precision="16" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CategoriaGasto" Relationship="CdeGastosEDM.CategoriaGastoGasto" FromRole="Gasto" ToRole="CategoriaGasto" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="FechaGasto" Type="DateTime" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <Property Name="CategoriaGastoId" Type="Int32" Nullable="false" />
+          <Property Name="TotalGasto" Type="Decimal" Nullable="false" Scale="4" Precision="16" />
+          <NavigationProperty Name="DetallesGasto" Relationship="CdeGastosEDM.GastoDetalleGasto" FromRole="Gasto" ToRole="DetalleGasto" />
+          <Property Name="Moneda" Type="String" Nullable="false" />
+          <Property Name="TipoCambio" Type="Decimal" Nullable="false" Scale="4" Precision="16" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetallesCuentasGasto" Relationship="CdeGastosEDM.GastoDetalleCuentaGasto" FromRole="Gasto" ToRole="DetalleCuentaGasto" />
+        </EntityType>
+        <EntityType Name="CategoriaGasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="CategoriaGastoHijas" Relationship="CdeGastosEDM.CategoriaGastoCategoriaGasto" FromRole="CategoriaGasto" ToRole="CategoriaGasto1" />
+          <NavigationProperty Name="CategoriaGastoPadre" Relationship="CdeGastosEDM.CategoriaGastoCategoriaGasto" FromRole="CategoriaGasto1" ToRole="CategoriaGasto" />
+          <Property Name="CategoriaGastoPadreId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Gastos" Relationship="CdeGastosEDM.CategoriaGastoGasto" FromRole="CategoriaGasto" ToRole="Gasto" />
+          </EntityType>
+        <Association Name="CategoriaGastoCategoriaGasto">
+          <End Type="CdeGastosEDM.CategoriaGasto" Role="CategoriaGasto" Multiplicity="0..1" />
+          <End Type="CdeGastosEDM.CategoriaGasto" Role="CategoriaGasto1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaGasto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoriaGasto1">
+              <PropertyRef Name="CategoriaGastoPadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoriaGastoGasto">
+          <End Type="CdeGastosEDM.CategoriaGasto" Role="CategoriaGasto" Multiplicity="1" />
+          <End Type="CdeGastosEDM.Gasto" Role="Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaGasto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="CategoriaGastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Presupuesto" Relationship="CdeGastosEDM.PresupuestoActividad" FromRole="Actividad" ToRole="Presupuesto" />
+          <NavigationProperty Name="ActividadInsumos" Relationship="CdeGastosEDM.ActividadActividadInsumo" FromRole="Actividad" ToRole="ActividadInsumo" />
+        </EntityType>
+        <Association Name="PresupuestoActividad">
+          <End Type="CdeGastosEDM.Presupuesto" Role="Presupuesto" Multiplicity="1" />
+          <End Type="CdeGastosEDM.Actividad" Role="Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presupuesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actividad">
+              <PropertyRef Name="PresupuestoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Insumo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="ActividadesInsumo" Relationship="CdeGastosEDM.InsumoActividadInsumo" FromRole="Insumo" ToRole="ActividadInsumo" />
+          <NavigationProperty Name="TipoInsumo" Relationship="CdeGastosEDM.TipoInsumoInsumo" FromRole="Insumo" ToRole="TipoInsumo" />
+          <Property Name="TipoInsumoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActividadInsumo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Actividad" Relationship="CdeGastosEDM.ActividadActividadInsumo" FromRole="ActividadInsumo" ToRole="Actividad" />
+          <Property Name="ActividadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Insumo" Relationship="CdeGastosEDM.InsumoActividadInsumo" FromRole="ActividadInsumo" ToRole="Insumo" />
+          <Property Name="InsumoId" Type="Int32" Nullable="false" />
+          <Property Name="CantidadPresupuestada" Type="Double" Nullable="false" />
+          <Property Name="CostoPresupuestado" Type="Decimal" Nullable="false" />
+          <Property Name="CantidadEjecutada" Type="Double" Nullable="false" />
+          <Property Name="CostoEjecutado" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="DetallesGastos" Relationship="CdeGastosEDM.ActividadInsumoDetalleGasto" FromRole="ActividadInsumo" ToRole="DetalleGasto" />
+        </EntityType>
+        <Association Name="ActividadActividadInsumo">
+          <End Type="CdeGastosEDM.Actividad" Role="Actividad" Multiplicity="1" />
+          <End Type="CdeGastosEDM.ActividadInsumo" Role="ActividadInsumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActividadInsumo">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InsumoActividadInsumo">
+          <End Type="CdeGastosEDM.Insumo" Role="Insumo" Multiplicity="1" />
+          <End Type="CdeGastosEDM.ActividadInsumo" Role="ActividadInsumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActividadInsumo">
+              <PropertyRef Name="InsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TipoInsumo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Insumos" Relationship="CdeGastosEDM.TipoInsumoInsumo" FromRole="TipoInsumo" ToRole="Insumo" />
+        </EntityType>
+        <Association Name="TipoInsumoInsumo">
+          <End Type="CdeGastosEDM.TipoInsumo" Role="TipoInsumo" Multiplicity="1" />
+          <End Type="CdeGastosEDM.Insumo" Role="Insumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoInsumo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Insumo">
+              <PropertyRef Name="TipoInsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DetalleGasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Gasto" Relationship="CdeGastosEDM.GastoDetalleGasto" FromRole="DetalleGasto" ToRole="Gasto" />
+          <Property Name="GastoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActividadInsumo" Relationship="CdeGastosEDM.ActividadInsumoDetalleGasto" FromRole="DetalleGasto" ToRole="ActividadInsumo" />
+          <Property Name="ActividadInsumoId" Type="Int32" Nullable="false" />
+          <Property Name="CantidadGasto" Type="Double" Nullable="false" />
+          <Property Name="CostoGasto" Type="Decimal" Nullable="false" Scale="4" Precision="16" />
+        </EntityType>
+        <Association Name="GastoDetalleGasto">
+          <End Type="CdeGastosEDM.Gasto" Role="Gasto" Multiplicity="1" />
+          <End Type="CdeGastosEDM.DetalleGasto" Role="DetalleGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gasto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleGasto">
+              <PropertyRef Name="GastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ActividadInsumoDetalleGasto">
+          <End Type="CdeGastosEDM.ActividadInsumo" Role="ActividadInsumo" Multiplicity="1" />
+          <End Type="CdeGastosEDM.DetalleGasto" Role="DetalleGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadInsumo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleGasto">
+              <PropertyRef Name="ActividadInsumoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ingreso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="MontoIngreso" Type="Decimal" Nullable="false" Precision="16" Scale="4" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <Property Name="Moneda" Type="String" Nullable="false" />
+          <Property Name="TipoCambio" Type="Decimal" Nullable="false" Scale="4" Precision="16" />
+          <NavigationProperty Name="Cuenta" Relationship="CdeGastosEDM.CuentaIngreso" FromRole="Ingreso" ToRole="Cuenta" />
+          <Property Name="CuentaId" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Ingresos" Relationship="CdeGastosEDM.CuentaIngreso" FromRole="Cuenta" ToRole="Ingreso" />
+          <NavigationProperty Name="DetallesCuentaGasto" Relationship="CdeGastosEDM.CuentaDetalleCuentaGasto" FromRole="Cuenta" ToRole="DetalleCuentaGasto" />
+        </EntityType>
+        <Association Name="CuentaIngreso">
+          <End Type="CdeGastosEDM.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <End Type="CdeGastosEDM.Ingreso" Role="Ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ingreso">
+              <PropertyRef Name="CuentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DetalleCuentaGasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cuenta" Relationship="CdeGastosEDM.CuentaDetalleCuentaGasto" FromRole="DetalleCuentaGasto" ToRole="Cuenta" />
+          <Property Name="CuentaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gasto" Relationship="CdeGastosEDM.GastoDetalleCuentaGasto" FromRole="DetalleCuentaGasto" ToRole="Gasto" />
+          <Property Name="GastoId" Type="Int32" Nullable="false" />
+          <Property Name="MontoGasto" Type="Decimal" Nullable="false" Scale="4" Precision="16" />
+        </EntityType>
+        <Association Name="CuentaDetalleCuentaGasto">
+          <End Type="CdeGastosEDM.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <End Type="CdeGastosEDM.DetalleCuentaGasto" Role="DetalleCuentaGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleCuentaGasto">
+              <PropertyRef Name="CuentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GastoDetalleCuentaGasto">
+          <End Type="CdeGastosEDM.Gasto" Role="Gasto" Multiplicity="1" />
+          <End Type="CdeGastosEDM.DetalleCuentaGasto" Role="DetalleCuentaGasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gasto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleCuentaGasto">
+              <PropertyRef Name="GastoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CdeGastosEDMStoreContainer" CdmEntityContainer="CdeGastosEDMContainer">
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
