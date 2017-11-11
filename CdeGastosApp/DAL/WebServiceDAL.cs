@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -94,5 +95,56 @@ namespace CdeGastosApp.DAL
             }
 
         }
+
+        public string ActualizarTipoInsumo(TipoInsumoDTO pTipoInsumo)
+        {
+            try
+            {
+                var tipoInsumo = db.TiposInsumos.FirstOrDefault(x => x.Id == pTipoInsumo.Id);
+
+                if (tipoInsumo == null)
+                {
+                    return "No se ha encontrado ningun Tipo de Insumo.";
+                }
+
+                tipoInsumo.Descripcion = pTipoInsumo.Descripcion;
+
+                db.Entry(tipoInsumo).State = EntityState.Modified;
+                db.SaveChanges();
+                return "Ok";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        public List<TipoInsumoDTO> ListarTiposInsumos()
+        {
+            var query = from x in db.TiposInsumos
+                        select new TipoInsumoDTO
+                        {
+                            Id = x.Id,
+                            Codigo = x.Codigo,
+                            Descripcion = x.Descripcion
+                        };
+
+            return query.ToList();
+        }
+
+        public TipoInsumoDTO BuscarTipoInsumo(string pCodigo)
+        {
+            var query = db.TiposInsumos.Where(x => x.Codigo == pCodigo)
+                                       .Select(x => new TipoInsumoDTO
+                                       {
+                                           Id = x.Id,
+                                           Codigo = x.Codigo,
+                                           Descripcion = x.Descripcion
+                                       });
+
+            return query as TipoInsumoDTO;
+        }
+
     }
 }

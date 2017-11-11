@@ -54,6 +54,19 @@ namespace CdeGastosApp.ServiciosWeb
             return wsDAL.CrearTipoInsumo(TipoInsumo);
         }
 
+        [WebMethod]
+        public TipoInsumoDTO BuscarTipoInsumo(string pCodigo)
+        {
+            return wsDAL.BuscarTipoInsumo(pCodigo);
+        }
+
+
+        [WebMethod]
+        public List<TipoInsumoDTO> ListarTiposInsumos(string pCodigo)
+        {
+            return wsDAL.ListarTiposInsumos();
+        }
+
         #endregion
     }
 }
